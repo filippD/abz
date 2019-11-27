@@ -1,0 +1,18 @@
+.header {
+	display: flex;
+	justify-content: space-between;
+	// position: fixed;
+	height: 73px;
+
+	.logo {
+		height: 100%;
+	    width: 135px;
+	    // padding: 27px 15px;
+	}
+
+	.menu-icon {
+		// padding: 27px 15px;
+		width: 25px;
+		height:100%;
+	}
+}

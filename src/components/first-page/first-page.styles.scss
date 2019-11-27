@@ -1,0 +1,17 @@
+.first-page {
+	color: white;
+	background: #ffffff url('../../assets/backgrounds/first-bg-320x393.jpg') no-repeat;
+	background-size: cover;
+	padding: 10px;
+	text-align: center;
+	height: 393px;
+
+	.main-text {
+		font-size: 30px;
+		line-height: 36px;
+	}
+
+	.button-div {
+		margin-top: 85px;
+	}
+}
