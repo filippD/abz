@@ -1,0 +1,5 @@
+export const SET_USERS_BEGIN = 'SET_USERS_BEGIN';
+
+export const SET_USERS_SUCCESS = 'SET_USERS_SUCCESS';
+
+export const SET_USERS_FAILURE = 'SET_USERS_FAILURE';

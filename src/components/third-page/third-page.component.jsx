@@ -30,7 +30,7 @@ const ThirdPage = () => {
 		<div className='container'>
 			<h1>About my relationships with web-development</h1>
 			{
-				languages.map((language) => <LanguageCard {...language} />)
+				languages.map((language, i) => <LanguageCard key={i} {...language} />)
 			}
 		</div>
 	);
