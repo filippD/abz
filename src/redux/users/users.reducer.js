@@ -1,4 +1,4 @@
-import { SET_USERS_BEGIN, SET_USERS_SUCCESS, SET_USERS_FAILURE } from './users.actionTypes';
+import { LOAD_BEGIN, SET_USERS_SUCCESS, ADD_USER_SUCCESS, ADD_USERS_SUCCESS, LOAD_FAILURE } from './users.actionTypes';
 
 const INITIAL_STATE = {
 	loading: false,
@@ -9,7 +9,7 @@ const INITIAL_STATE = {
 
 const usersReducer = (state = INITIAL_STATE, action) => {
 	switch(action.type) {
-		case SET_USERS_BEGIN:
+		case LOAD_BEGIN:
 			return {
 				...state,
 				loading: true,
@@ -19,10 +19,14 @@ const usersReducer = (state = INITIAL_STATE, action) => {
 			return {
 				...state,
 				loading: false,
-				users: [...state.users, ...action.payload],
-				counter: state.counter+1
+				users: [...action.payload],
 			};
-		case SET_USERS_FAILURE:
+		case ADD_USER_SUCCESS:
+			return {
+				...state,
+				loading: false
+			}
+		case LOAD_FAILURE:
 			return {
 				...state,
 				loading: false,

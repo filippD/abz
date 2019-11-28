@@ -1,5 +1,9 @@
-export const SET_USERS_BEGIN = 'SET_USERS_BEGIN';
+export const LOAD_BEGIN = 'LOAD_BEGIN';
+
+export const ADD_USERS_SUCCESS = 'ADD_USERS_SUCCESS';
+
+export const ADD_USER_SUCCESS = 'ADD_USER_SUCCESS';
 
 export const SET_USERS_SUCCESS = 'SET_USERS_SUCCESS';
 
-export const SET_USERS_FAILURE = 'SET_USERS_FAILURE';
+export const LOAD_FAILURE = 'LOAD_FAILURE';

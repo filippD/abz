@@ -1,9 +1,15 @@
-import { SET_USERS_BEGIN, SET_USERS_SUCCESS, SET_USERS_FAILURE } from './users.actionTypes';
+import { 
+        LOAD_BEGIN,
+        SET_USERS_SUCCESS,
+        ADD_USER_SUCCESS,
+        ADD_USERS_SUCCESS,
+        LOAD_FAILURE 
+      } from './users.actionTypes';
+import { API_URL } from '../../constants/constants';
+import axios from 'axios';
 
-const API_URL = 'https://frontend-test-assignment-api.abz.agency/api/v1';
-
-const setUsersBegin = () => ({
-	type: SET_USERS_BEGIN
+const loadBegin = () => ({
+	type: LOAD_BEGIN
 });
 
 const setUsersSuccess = (users) => ({
@@ -11,14 +17,18 @@ const setUsersSuccess = (users) => ({
 	payload: users
 });
 
-const setUsersFailure = (error) =>({
-	type: SET_USERS_FAILURE,
+const addUserSuccess = (user) => ({
+  type: ADD_USER_SUCCESS
+});
+
+const loadFailure = (error) =>({
+	type: LOAD_FAILURE,
 	payload: error
 });
 
-export const setUsers = (counter, count=3) => {
+export const setUsers = (counter=1, count=3) => {
 	return dispatch => {
-    	dispatch(setUsersBegin());
+    	dispatch(loadBegin());
     	return fetch(`${API_URL}/users?page=${counter}&count=${count}`, {
 	      	method: 'GET',
 	    })
@@ -27,7 +37,41 @@ export const setUsers = (counter, count=3) => {
         	dispatch(setUsersSuccess(users.users));
       	})
       	.catch(error => {
-      		dispatch(setUsersFailure(error))
+      		dispatch(loadFailure(error))
       	});
   	};
+};
+
+export const addUser = (user) => {
+  const formData = new FormData();
+  formData.append('photo', user.photo)
+  formData.append('name', user.name)
+  formData.append('email', user.email)
+  formData.append('phone', user.phone)
+  formData.append('position_id', user.position_id)
+
+  
+  return dispatch => {
+    dispatch(loadBegin());
+    axios.get(`${API_URL}/token`)
+    .then( response => {
+      const config = {
+        headers: {
+            'content-type': 'multipart/form-data',
+            'Token': response.data.token
+        }
+      }
+      axios.post(`${API_URL}/users`, formData, config)
+      .then(res => dispatch(addUserSuccess()))
+      .then(x=>axios.get(`${API_URL}/users`)
+        .then(res => dispatch(setUsersSuccess(res.data.users)))
+      )
+      .catch(error => {
+        dispatch(loadFailure(error))
+      });
+    })
+    .catch(error => {
+        dispatch(loadFailure(error))
+    });
+  };
 };
