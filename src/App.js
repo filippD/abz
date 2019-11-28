@@ -9,6 +9,8 @@ import ThirdPage from './components/third-page/third-page.component';
 import FourthPage from './components/fourth-page/fourth-page.component';
 import UsersPage from './components/users-page/users-page.component';
 import RegisterPage from './components/register-page/register-page.component';
+import LastPage from './components/last-page/last-page.component';
+import Footer from './components/footer/footer.component';
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
       <FourthPage />
       <UsersPage />
       <RegisterPage />
+      <LastPage />
+      <Footer />
     </div>
   );
 }
