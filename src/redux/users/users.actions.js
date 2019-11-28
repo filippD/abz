@@ -17,6 +17,11 @@ const setUsersSuccess = (users) => ({
 	payload: users
 });
 
+const addUsersSuccess = (users) => ({
+  type: ADD_USERS_SUCCESS,
+  payload: users
+});
+
 const addUserSuccess = (user) => ({
   type: ADD_USER_SUCCESS
 });
@@ -26,23 +31,39 @@ const loadFailure = (error) =>({
 	payload: error
 });
 
-export const setUsers = (counter=1, count=3) => {
+export const setUsers = (count=3) => {
 	return dispatch => {
-    	dispatch(loadBegin());
-    	return fetch(`${API_URL}/users?page=${counter}&count=${count}`, {
-	      	method: 'GET',
-	    })
-      	.then(res => res.json())
-      	.then(users => {
-        	dispatch(setUsersSuccess(users.users));
-      	})
-      	.catch(error => {
-      		dispatch(loadFailure(error))
-      	});
-  	};
+  	dispatch(loadBegin());
+  	return fetch(`${API_URL}/users?page=1&count=${count}`, {
+      	method: 'GET'
+    })
+    .then(res => res.json())
+    .then(users => {
+      dispatch(setUsersSuccess(users.users));
+    })
+    .catch(error => {
+    	dispatch(loadFailure(error))
+    })
+  };
 };
 
-export const addUser = (user) => {
+export const addUsers = (counter, count) => {
+  return dispatch => {
+    dispatch(loadBegin());
+    return fetch(`${API_URL}/users?page=${counter}&count=${count}`, {
+          method: 'GET'
+      })
+      .then(res => res.json())
+      .then(users => {
+        dispatch(addUsersSuccess(users.users));
+      })
+      .catch(error => {
+        dispatch(loadFailure(error));
+      });
+  };
+};
+
+export const addUser = (user, count) => {
   const formData = new FormData();
   formData.append('photo', user.photo)
   formData.append('name', user.name)
@@ -63,7 +84,7 @@ export const addUser = (user) => {
       }
       axios.post(`${API_URL}/users`, formData, config)
       .then(res => dispatch(addUserSuccess()))
-      .then(x=>axios.get(`${API_URL}/users`)
+      .then(x=>axios.get(`${API_URL}/users?page=1&count=${count}`)
         .then(res => dispatch(setUsersSuccess(res.data.users)))
       )
       .catch(error => {

@@ -4,7 +4,7 @@ const INITIAL_STATE = {
 	loading: false,
 	users: [],
 	error: null,
-	counter: 1
+	counter: 2
 };
 
 const usersReducer = (state = INITIAL_STATE, action) => {
@@ -19,8 +19,15 @@ const usersReducer = (state = INITIAL_STATE, action) => {
 			return {
 				...state,
 				loading: false,
-				users: [...action.payload],
+				users: [...action.payload]
 			};
+		case ADD_USERS_SUCCESS:
+			return {
+				...state,
+				loading: false,
+				users: [...state.users, ...action.payload],
+				counter: state.counter+1
+			}
 		case ADD_USER_SUCCESS:
 			return {
 				...state,

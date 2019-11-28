@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { setUsers } from '../../redux/users/users.actions';
+import { setUsers, addUsers } from '../../redux/users/users.actions';
 
 import UserCard from '../user-card/user-card.component';
 
@@ -21,7 +21,7 @@ class UsersPage extends React.Component {
 					{
 						this.props.users.map(user => <UserCard key={user.id} {...user} />)
 					}
-					<button onClick={() => {this.props.setUsers(this.props.counter)}}>Show More</button>
+					<button onClick={() => {this.props.addUsers(this.props.counter, 3)}}>Show More</button>
 				</div>
 		);
 	};
@@ -32,4 +32,4 @@ const mapStateToPros = ({users}) => ({
 	counter: users.counter
 });
 
-export default connect(mapStateToPros, {setUsers})(UsersPage);
+export default connect(mapStateToPros, {setUsers, addUsers})(UsersPage);

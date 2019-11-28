@@ -22,7 +22,7 @@ class RegisterPage extends React.Component {
 	handleSubmit = async event => {
 	    event.preventDefault();
 	    try {
-	    	await this.props.addUser(this.state)
+	    	await this.props.addUser(this.state, 3)
 	      	this.setState({ email: '', password: '' });  
   
 	    } catch(error) {
@@ -43,26 +43,39 @@ class RegisterPage extends React.Component {
 	render() {
 		const { name, email, phone, position } = this.state;
 		return(
-			<div>
+			<div className='register-page container'>
 				<h1>Register to get a work</h1>
 				<p>
 				Attention! After a successful registration and alert,
 				update the list of users in the block from the top
 				</p>
 				<form className='form' onSubmit={this.handleSubmit} >
-				  	<input required className='title-field' placeholder='Name' type="text" name="name" value={name} onChange={this.handleChange} />
-				  	<input required className='title-field' placeholder='Email' type="email" name="email" value={email} onChange={this.handleChange} />
-				  	<input required className='title-field' placeholder='Phone' type="number" name="phone" value={phone} onChange={this.handleChange} />
-
-				  	<select required className='position' name="position_id" value={position} onChange={this.handleChange} >
-				    {
-						POSITIONS.map((position, i) => (
-							<option key={i} value={position.id}>{position.name}</option>
-						))
-					}
-				  	</select>
-					<input required className='title-field' type="file" onChange={this.handleFileChange} />
-				  	<input className='submitButton' type="submit" />
+					<div className='input-div'>
+						<label className = 'form-label'>Name</label>
+				  		<input required className='title-field' placeholder='Your Name' type="text" name="name" value={name} onChange={this.handleChange} />
+				  	</div>
+				  	<div className='input-div'>
+				  		<label className='form-label'>Email</label>
+				  		<input required className='title-field' placeholder='Your Email' type="email" name="email" value={email} onChange={this.handleChange} />
+				  	</div>
+				  	<div className='input-div'>
+				  		<label className='form-label'>Phone</label>
+				  		<input required className='title-field' placeholder='Phone' type="number" name="phone" value={phone} onChange={this.handleChange} />
+				  	</div>
+				  	<div className='input-div'>
+					  	<select required className='title-field position' name="position_id" value={position} onChange={this.handleChange} >
+					    <option value="">Select your position</option>
+					    {
+							POSITIONS.map((position, i) => (
+								<option key={i} value={position.id}>{position.name}</option>
+							))
+						}
+					  	</select>
+				  	</div>
+				  	<div className='input-div'>
+						<input required className='title-field' type="file" onChange={this.handleFileChange} />
+				  	</div>
+				  	<input className='submitButton' type="submit" value='Sign Up' />
 				</form>
 			</div>
 		);
