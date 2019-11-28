@@ -8,6 +8,7 @@ import './header.styles.scss';
 const Header = () => (
 	<div className='header'>
 		<Logo className='logo' />
+		<span className="no-mobile no-tablet">about me</span>
 		<Menu className='menu-icon'/>
 	</div>
 );
