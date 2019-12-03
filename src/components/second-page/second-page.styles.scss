@@ -1,0 +1,27 @@
+.sign-up-text {
+	color: #ef6c00;
+}
+
+@media only screen  and (min-width: 1025px) {
+	.second-page {
+		height: 450px;
+		margin-top: 70px;
+
+		.content-div {
+			display: flex;
+			text-align: left;
+
+			.grey {
+				color: grey;
+
+			}
+
+			.image {
+				width: 950px;
+				height: 100%;
+				margin: 0 20px;
+			}
+		} 
+	}
+	
+}

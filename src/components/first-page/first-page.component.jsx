@@ -1,7 +1,5 @@
 import React from 'react';
 
-import CustomButton from '../custom-button/custom-button.component';
-
 import './first-page.styles.scss';
 
 const FirstPage = () => (
