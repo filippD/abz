@@ -22,7 +22,7 @@ const addUsersSuccess = (users) => ({
   payload: users
 });
 
-const addUserSuccess = (user) => ({
+const addUserSuccess = () => ({
   type: ADD_USER_SUCCESS
 });
 
