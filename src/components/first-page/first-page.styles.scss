@@ -9,7 +9,48 @@
 		line-height: 36px;
 	}
 
-	.button-div {
+	.button {
 		margin-top: 85px;
+		display: block;
+		width: 100%;
+		border: none;
+		border-radius: 5px;
+		background-color: #ef6c00;
+		color: white;
+		padding: 14px 28px;
+		font-size: 16px;
+		cursor: pointer;
+		text-align: center;
+	}
+}
+
+@media only screen  and (min-width: 1025px) {
+	.first-page {
+		height: 665px;
+		background: #ffffff url('../../assets/backgrounds/bg-1.jpg') no-repeat;
+		background-size: cover;
+		.first-page-content {
+			width: 45%;
+			text-align: left;
+			margin: 105px 30px;
+
+			.main-text {
+				font-size: 47px;
+				line-height: 60px;
+				
+			}
+
+			.secondary-text {
+				font-size: 20px;
+			}
+
+			.button {
+				font-size: 18px;
+				margin-top: 40px;
+				font-weight: bold;
+				width: 300px;
+				padding: 10px 0;
+			}
+		}
 	}
 }

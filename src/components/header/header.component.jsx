@@ -19,9 +19,9 @@ const Header = () => (
 			<span>Sign Up</span>
 		</div>
 		<MenuIcon className='menu-icon no-desktop'/>
-		<div className='user-div'>
-			<CurrentUser className="no-mobile no-tablet"/>
-			<SignOutIcon className="sign-out-icon no-mobile no-tablet"/>
+		<div className='user-div no-mobile no-tablet'>
+			<CurrentUser className=""/>
+			<SignOutIcon className="sign-out-icon"/>
 		</div>
 	</div>
 );
